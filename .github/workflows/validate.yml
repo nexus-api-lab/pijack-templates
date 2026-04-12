@@ -1,0 +1,27 @@
+name: Validate Templates
+
+on:
+  pull_request:
+    paths:
+      - 'templates/**/*.yaml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate YAML structure
+        run: |
+          for f in $(find templates -name "*.yaml"); do
+            python3 -c "
+import yaml, sys
+required = ['id','name','severity','category','language','payloads','detection','metadata']
+with open('$f') as file:
+    data = yaml.safe_load(file)
+    missing = [k for k in required if k not in data]
+    if missing:
+        print(f'FAIL $f: missing fields {missing}')
+        sys.exit(1)
+    print(f'OK $f')
+"
+          done
