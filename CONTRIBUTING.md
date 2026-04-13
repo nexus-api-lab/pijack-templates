@@ -46,7 +46,7 @@ detection:
     - "パターン1"
 
 integration_test:
-  endpoint: "https://jpi-guard.nexus-api-lab.workers.dev/v1/analyze"
+  endpoint: "https://api.nexus-api-lab.com/v1/analyze"
   expected_fields:
     - is_injection: true
     - risk_level: ["medium", "high", "critical"]
@@ -67,7 +67,7 @@ npx pijack test https://your-rag-app.example.com \
 または直接 API 呼び出し:
 
 ```bash
-curl -X POST https://jpi-guard.nexus-api-lab.workers.dev/v1/analyze \
+curl -X POST https://api.nexus-api-lab.com/v1/analyze \
   -H "Content-Type: application/json" \
   -d '{"text": "<攻撃ペイロード>"}'
 ```

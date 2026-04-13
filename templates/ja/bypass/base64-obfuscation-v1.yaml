@@ -35,7 +35,7 @@ detection:
     - "SWdub3Jl"
 
 integration_test:
-  endpoint: "https://jpi-guard.nexus-api-lab.workers.dev/v1/analyze"
+  endpoint: "https://api.nexus-api-lab.com/v1/external-content-cleanse"
   expected_fields:
     - is_injection: true
     - risk_level: ["critical"]
